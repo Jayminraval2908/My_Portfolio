@@ -1,5 +1,6 @@
 import React from 'react'
 import Footer from './Footer'
+import myImg from '../assets/myimg.jpg'
 
 function Home() {
   return (
@@ -19,7 +20,7 @@ function Home() {
         </div>
         <div><img
   className="w-72 h-72 md:w-80 md:h-80 rounded-full object-cover shadow-lg border-4 border-white"
-  src="/photo/WhatsApp%20Image%202025-07-05%20at%2014.14.47_c380183d.jpg"
+  src={myImg}
   alt="my_img"
 />
 
