@@ -1,6 +1,7 @@
 import React from 'react'
 import Footer from './Footer'
-import myimg from '../assets/myimg.jpg'
+import myimg from '../assets/myimg.jpg'; // 
+
 
 function Home() {
   return (
