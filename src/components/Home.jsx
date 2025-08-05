@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
-import myimg from '../assets/myimg.jpg';
+import myimg from '../assests/myimg.jpg';
 
 function Home() {
   return (
@@ -39,4 +39,5 @@ function Home() {
 }
 
 export default Home;
+
 
