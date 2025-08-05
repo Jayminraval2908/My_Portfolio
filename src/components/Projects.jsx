@@ -8,9 +8,8 @@ const projects = [
     tech: ['HTML', 'CSS', 'JavaScript'],
     link: 'https://weather-o31nggr7o-jayminraval2908s-projects.vercel.app',
   },
-  
   {
-    title: 'Find My Doctor',    
+    title: 'Find My Doctor',
     description:
       'A React + Tailwind website for finding doctors by city and specialty. Features login/signup and Appwrite integration.',
     tech: ['React', 'Tailwind CSS', 'Appwrite'],
@@ -20,18 +19,25 @@ const projects = [
 
 function Projects() {
   return (
-    <section id="Projects" className="	bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white px-10 md:px-20 py-16">
+    <section
+      id="Projects"
+      className="bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white px-6 sm:px-10 md:px-20 py-16"
+    >
       <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">Projects</h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10 text-center">Projects</h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-[#1a1f2e] rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
+              className="bg-[#1a1f2e] rounded-xl p-5 sm:p-6 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-xl font-semibold text-blue-400 mb-2">{project.title}</h3>
-                <p className="text-gray-300 text-sm mb-4">{project.description}</p>
+                <h3 className="text-lg sm:text-xl font-semibold text-blue-400 mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-300 text-sm sm:text-base mb-4">{project.description}</p>
+
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, i) => (
                     <span
@@ -43,6 +49,7 @@ function Projects() {
                   ))}
                 </div>
               </div>
+
               <a
                 href={project.link}
                 target="_blank"
