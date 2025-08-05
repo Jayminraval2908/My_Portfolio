@@ -28,7 +28,7 @@ function Home() {
         {/* Image Section */}
         <div className="flex justify-center">
           <img
-            className="w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full object-cover shadow-lg border-4 border-white"
+            className="hidden md:block w-64 h-64 rounded-full object-cover shadow-lg border-4 border-white"
             src={myimg}
             alt="my_img"
           />
@@ -39,3 +39,4 @@ function Home() {
 }
 
 export default Home;
+
