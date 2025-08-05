@@ -1,55 +1,38 @@
-import React from 'react';
-import {
-  RiLinkedinBoxFill,
-  RiGithubFill,
-  RiMailFill,
-  RiPhoneFill
-} from '@remixicon/react';
+import React from "react";
 
 function Footer() {
   return (
-    <footer id="Footer" className="bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white px-6 md:px-20 py-6 text-sm">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        {/* Contact Info */}
-        <div>
-          <h3 className="text-lg font-semibold mb-2">Contact</h3>
-          <ul className="space-y-1 text-gray-300">
-            <li className="flex items-center gap-2">
-              <RiPhoneFill className="text-cyan-400" size={16} />
-              +91 9925396071
-            </li>
-            <li className="flex items-center gap-2">
-              <RiMailFill className="text-cyan-400" size={16} />
-              ravaljaymin2908@gmail.com
-            </li>
-            <li className="flex items-center gap-2">
-              <RiLinkedinBoxFill className="text-cyan-400" size={16} />
-              <a
-                href="https://linkedin.com/in/raval-jaymin"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                linkedin.com/in/raval-jaymin
-              </a>
-            </li>
-            <li className="flex items-center gap-2">
-              <RiGithubFill className="text-cyan-400" size={16} />
-              <a
-                href="https://github.com/Jayminraval2908"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                github.com/Jayminraval2908
-              </a>
-            </li>
-          </ul>
+    <footer className="bg-gray-800 text-white py-8 px-4">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        {/* Left Side: Copyright */}
+        <div className="text-center md:text-left text-sm">
+          © 2024 Raval Jaymin. All rights reserved.
         </div>
 
-        {/* Copyright */}
-        <div className="text-gray-400 text-xs md:text-sm text-center md:text-right">
-          © {new Date().getFullYear()} Jaymin Raval. All rights reserved.
+        {/* Right Side: Social Icons */}
+        <div className="flex space-x-4">
+          <a
+            href="https://github.com/your-username"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-400 transition-colors duration-200"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/your-profile"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-400 transition-colors duration-200"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:youremail@example.com"
+            className="hover:text-blue-400 transition-colors duration-200"
+          >
+            Email
+          </a>
         </div>
       </div>
     </footer>
