@@ -1,67 +1,221 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import {
+  RiGithubFill,
+  RiExternalLinkLine,
+} from "@remixicon/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    title: 'Weather App',
+    title: "Vehicle Vault",
     description:
-      'A simple weather application that fetches real-time weather data using OpenWeather API. Built with HTML, CSS, and JavaScript.',
-    tech: ['HTML', 'CSS', 'JavaScript'],
-    link: 'https://weather-o31nggr7o-jayminraval2908s-projects.vercel.app',
+      "A full-stack vehicle marketplace platform where users can explore vehicle listings, negotiate offers, send inquiries, and book test drives with secure authentication features.",
+
+    tech: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "Tailwind CSS",
+    ],
+
+    live: "https://vehicle-vault-frontend-lake.vercel.app/",
+
+    github: "https://github.com/Jayminraval2908/VehicleVault-Frontend",
   },
 
   {
-    title: 'Find My Doctor',    
+    title: "Weather App",
+
     description:
-      'A React + Tailwind website for finding doctors by city and specialty. Features login/signup and Appwrite integration.',
-    tech: ['React', 'Tailwind CSS', 'Appwrite'],
-    link: 'https://find-my-doctor-m3ug.vercel.app/',
+      "A modern weather application that fetches real-time weather data using OpenWeather API with responsive UI and dynamic weather updates.",
+
+    tech: ["HTML", "CSS", "JavaScript"],
+
+    live:
+      "https://weather-app-zeta-sand-27.vercel.app/",
+
+    github:
+      "https://github.com/Jayminraval2908/Weather_App",
   },
 
   {
-    title: 'MovieBase',
+    title: "Find My Doctor",
+
     description:
-      'A movie search application that allows users to explore movies, view ratings, posters, and details using a movie API. Built with React and modern UI design.',
-    tech: ['React', 'JavaScript', 'API', 'CSS'],
-    link: 'https://movie-base-murex.vercel.app/',
+      "A React + Tailwind healthcare platform for finding doctors by city and specialty with authentication and Appwrite integration.",
+
+    tech: ["React", "Tailwind CSS", "Appwrite"],
+
+    live: "https://find-my-doctor-m3ug.vercel.app/",
+
+    github:
+      "https://github.com/Jayminraval2908",
+  },
+
+  {
+    title: "MovieBase",
+
+    description:
+      "A movie search platform that displays movie ratings, posters, genres, and details using a movie API with modern responsive design.",
+
+    tech: ["React", "JavaScript", "API", "CSS"],
+
+    live: "https://movie-base-murex.vercel.app/",
+
+    github:
+      "https://github.com/Jayminraval2908/MovieBase",
   },
 ];
 
 function Projects() {
+  const sectionRef = useRef();
+
+useEffect(() => {
+
+  const ctx = gsap.context(() => {
+
+    gsap.fromTo(
+      ".project-title",
+      {
+        y: 60,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.2,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      ".project-card",
+      {
+        y: 80,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.15,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".projects-grid",
+          start: "top 85%",
+        },
+      }
+    );
+
+  }, sectionRef);
+
+  return () => ctx.revert();
+
+}, []);
   return (
-    <section id="Projects" className="bg-gradient-to-b from-[#0f172a] to-[#1e293b] text-white px-10 md:px-20 py-16">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">Projects</h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <section
+      ref={sectionRef}
+      id="Projects"
+      className="relative w-full px-6 md:px-20 py-24 overflow-hidden"
+    >
+      {/* Background Glow */}
+     <div className="absolute top-0 right-0 w-[220px] h-[220px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+<div className="absolute bottom-0 left-0 w-[220px] h-[220px] bg-purple-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+
+        {/* Heading */}
+        <div className="text-center mb-20">
+          <p className="project-title uppercase tracking-[6px] text-cyan-400 text-sm mb-4">
+            Portfolio
+          </p>
+
+          <h2 className="project-title text-4xl md:text-6xl font-black">
+            Featured <span className="text-cyan-400">Projects</span>
+          </h2>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="projects-grid grid md:grid-cols-2 xl:grid-cols-2 gap-10">
+
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-[#1a1f2e] rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between"
+              className="project-card group relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 hover:border-cyan-400/30 transition duration-500"
             >
-              <div>
-                <h3 className="text-xl font-semibold text-blue-400 mb-2">{project.title}</h3>
-                <p className="text-gray-300 text-sm mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+              {/* Hover Glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-cyan-500/10 to-purple-500/10"></div>
+
+              <div className="relative z-10">
+
+                {/* Project Number */}
+                <p className="text-gray-500 text-sm mb-4">
+                  0{index + 1}
+                </p>
+
+                {/* Title */}
+                <h3 className="text-3xl font-bold mb-5">
+                  {project.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-3 mb-8">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="text-xs bg-[#2a2f3d] text-gray-300 px-2 py-1 rounded-full"
+                      className="px-4 py-2 rounded-full text-sm bg-white/5 border border-white/10 text-cyan-300"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-              </div>
 
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-auto text-sm font-medium text-cyan-400 hover:underline"
-              >
-                View Project →
-              </a>
+                {/* Buttons */}
+                <div className="flex flex-wrap gap-4">
+
+                  {/* Live Link */}
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-105 transition duration-300 shadow-lg shadow-cyan-500/20"
+                  >
+                    <RiExternalLinkLine size={18} />
+                    Live Demo
+                  </a>
+
+                  {/* GitHub Link */}
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:scale-105 transition duration-300"
+                  >
+                    <RiGithubFill size={18} />
+                    GitHub
+                  </a>
+
+                </div>
+              </div>
             </div>
           ))}
+
         </div>
       </div>
     </section>
