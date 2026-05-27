@@ -95,7 +95,7 @@ function Home() {
         {/* STATS */}
         <div className="hero-text flex gap-10 mt-14 flex-wrap">
           <div>
-            <h2 className="text-3xl font-bold text-cyan-400">10+</h2>
+            <h2 className="text-3xl font-bold text-cyan-400">4+</h2>
             <p className="text-gray-400 text-sm">Projects Built</p>
           </div>
 

@@ -6,6 +6,8 @@ import {
   RiGithubFill,
   RiExternalLinkLine,
 } from "@remixicon/react";
+import { title } from "node:process";
+import { describe } from "node:test";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,6 +72,19 @@ const projects = [
     github:
       "https://github.com/Jayminraval2908/MovieBase",
   },
+
+  {
+    title:"AI-PPE-DETECTION - Group Project",
+
+    description:"Al-based Industrial Safety & Surveillance System (Group Project) - this project harnesses computer vision to enhance workplace safety, ensuring compliance and reducing risks in industrial environments.",
+
+    tech:["Python", "YOLOv8 (Ultralyticss)", "Streamlit (UI)", "NumPy", "Pandas"],
+
+    live:"https://ai-ppe-detection-dp.streamlit.app/",
+    
+    github:
+    "https://github.com/Jayminraval2908/AI-PPE-Detection",
+  }
 ];
 
 function Projects() {
