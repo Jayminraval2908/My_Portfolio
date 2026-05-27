@@ -6,8 +6,6 @@ import {
   RiGithubFill,
   RiExternalLinkLine,
 } from "@remixicon/react";
-import { title } from "node:process";
-import { describe } from "node:test";
 
 gsap.registerPlugin(ScrollTrigger);
 
