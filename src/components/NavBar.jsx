@@ -1,100 +1,63 @@
-import React, { useEffect, useRef, useState } from "react";
-import { RiCloseLine, RiMenu3Line } from "@remixicon/react";
-import gsap from "gsap";
+import { useState } from "react";
+import { RiCloseLine, RiMenu3Line, RiMoonLine, RiSunLine } from "@remixicon/react";
+import { navLinks, profile } from "../data";
 
-function NavBar() {
-  const [menu, setMenu] = useState(false);
+export default function NavBar() {
+  const [open, setOpen] = useState(false);
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || "dark");
 
-  const navRef = useRef();
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch { /* ignore */ }
+    setTheme(next);
+  };
 
-  useEffect(() => {
-    gsap.from(navRef.current, {
-      y: -80,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
-  }, []);
+  const iconBtn = "grid place-items-center w-10 h-10 rounded-full border border-line hover:border-accent hover:text-accent transition";
 
   return (
     <>
-      <nav
-        ref={navRef}
-        className="fixed top-0 left-0 w-full z-[999] backdrop-blur-xl bg-[#020617]/70 border-b border-white/10"
-      >
-        <div className="flex items-center justify-between px-6 md:px-20 py-5">
-          
-          {/* Logo */}
-          <h1 className="text-2xl md:text-3xl font-bold tracking-wider bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-            JAYMIN.
-          </h1>
+      <header className="fixed top-4 inset-x-0 z-50 px-4">
+        <nav className="mx-auto max-w-5xl flex items-center justify-between gap-4 rounded-full border border-line bg-bg/80 backdrop-blur-md pl-6 pr-2 py-2">
+          <a href="#home" className="font-display font-extrabold text-lg tracking-tight">
+            jaymin<span className="text-accent">.</span>
+          </a>
 
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center gap-10 text-sm font-medium text-gray-300">
-            {["About", "Skills", "Experience", "Projects", "Footer"].map(
-              (item, index) => (
-                <a
-                  key={index}
-                  href={`#${item}`}
-                  className="hover:text-cyan-400 transition-all duration-300"
-                >
-                  {item === "Footer" ? "Contact" : item}
-                </a>
-              )
-            )}
+          <ul className="hidden md:flex items-center gap-8 text-sm text-muted">
+            {navLinks.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="hover:text-fg transition">{l.label}</a>
+              </li>
+            ))}
+          </ul>
 
+          <div className="flex items-center gap-2">
+            <button onClick={toggleTheme} aria-label="Toggle theme" className={iconBtn}>
+              {theme === "dark" ? <RiSunLine size={18} /> : <RiMoonLine size={18} />}
+            </button>
             <a
-              href="/MERN_RESUME.pdf"
+              href={profile.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all duration-300"
+              className="hidden md:inline-block px-5 py-2.5 rounded-full bg-accent text-on-accent text-sm font-bold hover:opacity-90 transition"
             >
               Resume
             </a>
-          </ul>
-
-          {/* Mobile Icon */}
-          <div className="md:hidden z-[1000]">
-            {menu ? (
-              <RiCloseLine
-                size={30}
-                className="cursor-pointer"
-                onClick={() => setMenu(false)}
-              />
-            ) : (
-              <RiMenu3Line
-                size={30}
-                className="cursor-pointer"
-                onClick={() => setMenu(true)}
-              />
-            )}
+            <button onClick={() => setOpen(!open)} aria-label="Menu" className={`${iconBtn} md:hidden`}>
+              {open ? <RiCloseLine size={20} /> : <RiMenu3Line size={20} />}
+            </button>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
-      {/* MOBILE MENU */}
-      {menu && (
-        <div className="fixed inset-0 z-[998] bg-[#020617] flex flex-col items-center justify-center gap-10 text-2xl font-semibold md:hidden">
-          
-          {["About", "Skills", "Experience", "Projects", "Footer"].map(
-            (item, index) => (
-              <a
-                key={index}
-                href={`#${item}`}
-                onClick={() => setMenu(false)}
-                className="hover:text-cyan-400 transition-all duration-300"
-              >
-                {item === "Footer" ? "Contact" : item}
-              </a>
-            )
-          )}
-
-          <a
-            href="/MERN_RESUME.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all duration-300"
-          >
+      {open && (
+        <div className="fixed inset-0 z-40 bg-bg flex flex-col items-center justify-center gap-8 md:hidden">
+          {navLinks.map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="font-display font-extrabold text-4xl">
+              {l.label}
+            </a>
+          ))}
+          <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="px-8 py-3 rounded-full bg-accent text-on-accent font-bold">
             Resume
           </a>
         </div>
@@ -102,5 +65,3 @@ function NavBar() {
     </>
   );
 }
-
-export default NavBar;

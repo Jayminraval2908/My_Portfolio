@@ -1,2 +1,48 @@
 @import "tailwindcss";
 
+:root {
+  --bg: #0e0e0c;
+  --fg: #f2efe8;
+  --muted: #8d8a82;
+  --line: #2a2924;
+  --card: #161613;
+  --accent: #d4ff3a;
+  --on-accent: #0e0e0c;
+}
+[data-theme="light"] {
+  --bg: #f5f2eb;
+  --fg: #151512;
+  --muted: #6b675e;
+  --line: #d9d4c7;
+  --card: #ece8dd;
+  --accent: #2d6a4f;
+  --on-accent: #ffffff;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-sans: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+section { scroll-margin-top: 5rem; }
+::selection { background: var(--accent); color: var(--on-accent); }
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { animation: marquee 35s linear infinite; }
+@keyframes ping-dot { 75%, 100% { transform: scale(2.2); opacity: 0; } }
+.ping-dot { animation: ping-dot 1.8s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee, .ping-dot { animation: none; }
+}
